@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <title>National Curriculum Development Center - Claim 2GB data Now!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FFFFFD, #9BFF00, #0070FF);
+            min-height: 100vh;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #0055FF;
+        }
+        
+        .container {
+            background: ;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+        }
+        .logo{
+            position: fixed;
+            top: 0%;
+            text-align: center;
+            height: 20%;
+            border-radius: -40px;
+            opacity: 70%;
+        }
+        
+        .header {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            color: #00E313;
+            background: linear-gradient(to right, #ffd700, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .reward-icon {
+            font-size: 6rem;
+            margin: 20px 0;
+            color: gold;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #ff8c00, #ff5500);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn:disabled {
+            background: linear-gradient(to right, #777, #555);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .form-group {
+            margin: 20px 0;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-align: left;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff8c00;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .carrier-info {
+            padding: 10px;
+            background: rgba(0, 100, 255, 0.2);
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 30px 0 20px;
+            overflow: hidden;
+            height: 25px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #00cc00, #00ff00);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: blue;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .clicks-info {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 200, 0, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.5s forwards;
+        }
+        
+        .notification h3 {
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .carrier-logo {
+            font-size: 2rem;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .step.active {
+            background: #ff8c00;
+        }
+        
+        .step-line {
+            position: absolute;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .step-line-progress {
+            height: 100%;
+            background: #ff8c00;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .congrats {
+            font-size: 2rem;
+            color: gold;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            display: none;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .reward-icon {
+                font-size: 5rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img class="logo" src="logo.png" alt="logo" />
+    <div class="container">
+        <div class="header">
+            <h1>NCDC gives out 2GB!</h1>
+            <p>NCDC has offered 2GB data to ugandans for the new Curriculum!</p>
+            <p>You can claim it and activate it on all networks now.</p>
+        </div>
+        
+        <div class="step-indicator">
+            <div class="step active">1</div>
+            <div class="step">2</div>
+            <div class="step">3</div>
+            <div class="step-line">
+                <div class="step-line-progress" id="step-progress"></div>
+            </div>
+        </div>
+        
+        <!-- Initial Screen -->
+        <div id="screen1" class="screen active">
+            <div class="reward-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <p>Get NOW! Complete the simple steps to claim 2GB all networks.</p>
+            <button id="claim-btn" class="btn">CLAIM YOUR REWARD NOW</button>
+            <p>Hurry! This offer expires in <span id="timer">05:00</span></p>
+        </div>
+        
+        <!-- Mobile Input Screen -->
+        <div id="screen2" class="screen">
+            <div class="reward-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <p>Enter your mobile number to verify your eligibility</p>
+            
+            <form id="mobile-form">
+                <div class="form-group">
+                    <label for="mobile-number">Mobile Number:</label>
+                    <input type="tel" id="mobile-number" placeholder="Enter your mobile number" required>
+                </div>
+                
+                <div id="carrier-info" class="carrier-info">
+                    <span id="carrier-icon" class="carrier-logo"></span>
+                    <span id="carrier-text"></span>
+                </div>
+                
+                <button type="submit" class="btn">VERIFY NUMBER</button>
+            </form>
+        </div>
+        
+        <!-- Ad Verification Screen -->
+        <div id="screen3" class="screen">
+            <div class="reward-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <p>Complete verification to claim the data!</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+            </div>
+            
+            <div class="clicks-info">
+                Clicks completed: <span id="click-count">0</span>/6
+            </div>
+            
+            <p>Share this to your friends and family on whatsapp now to satisfy</p>
+            <button id="verify-btn" class="btn">VERIFY NOW</button>
+            <script>
+  document.getElementById("verify-btn").addEventListener("click", function() {
+    var url = window.location.href;
+    var title = document.title;
+    var message = title + " - " + url;
+    var whatsappLink = "whatsapp://send?text=" + encodeURIComponent(message);
+    window.open(whatsappLink, '_blank');
+  });
+</script>
+            <div class="congrats" id="congrats">
+                <i class="fas fa-star"></i> YOU ARE VERIFIED!
+                <br>
+                <p>To activate the 2GB simply dail *100*10*10*2*2# on AIRTEL and *100*7# on MTN now</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <h3>Activate now!</h3>
+        <p>You can activate the data by simply dailing *100*10*10*2*2# on artel or *100*7# on mtn!</p>
+    </div>
+    
+    <script>
+        // DOM elements
+        const claimBtn = document.getElementById('claim-btn');
+        const mobileForm = document.getElementById('mobile-form');
+        const mobileInput = document.getElementById('mobile-number');
+        const carrierInfo = document.getElementById('carrier-info');
+        const carrierText = document.getElementById('carrier-text');
+        const carrierIcon = document.getElementById('carrier-icon');
+        const verifyBtn = document.getElementById('verify-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const clickCount = document.getElementById('click-count');
+        const congrats = document.getElementById('congrats');
+        const notification = document.getElementById('notification');
+        const timer = document.getElementById('timer');
+        const stepProgress = document.getElementById('step-progress');
+        
+        // Screens
+        const screen1 = document.getElementById('screen1');
+        const screen2 = document.getElementById('screen2');
+        const screen3 = document.getElementById('screen3');
+        
+        // Steps
+        const steps = document.querySelectorAll('.step');
+        
+        // Variables
+        let clicks = 0;
+        const maxClicks = 6;
+        let countdown = 300; // 5 minutes in seconds
+        
+        // Initialize countdown timer
+        function updateTimer() {
+            const minutes = Math.floor(countdown / 60);
+            const seconds = countdown % 60;
+            timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (countdown <= 0) {
+                clearInterval(timerInterval);
+                timer.textContent = "EXPIRED!";
+                timer.style.color = "#ff5555";
+            } else {
+                countdown--;
+            }
+        }
+        
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+        
+        // Carrier detection
+        function detectCarrier(number) {
+            const firstThree = number.substring(0, 3);
+            
+            if (['074', '070', '075'].includes(firstThree)) {
+                return { 
+                    name: "AIRTEL", 
+                    icon: "<i class='fas fa-signal'></i>",
+                    color: "#e60000"
+                };
+            } 
+            else if (['076', '077', '078'].includes(firstThree)) {
+                return { 
+                    name: "MTN", 
+                    icon: "<i class='fas fa-wifi'></i>",
+                    color: "#ffcc00"
+                };
+            } 
+            else {
+                return { 
+                    name: "MOBILE", 
+                    icon: "<i class='fas fa-mobile-alt'></i>",
+                    color: "#00aaff"
+                };
+            }
+        }
+        
+        // Update progress
+        function updateProgress() {
+            const progress = (clicks / maxClicks) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+            clickCount.textContent = clicks;
+            
+            if (clicks >= maxClicks) {
+                verifyBtn.disabled = true;
+                verifyBtn.textContent = "VERIFICATION COMPLETE!";
+                
+                // Show congratulations message
+                setTimeout(() => {
+                    congrats.style.display = "block";
+                    
+                    // Show notification
+                    notification.style.display = "block";
+                    setTimeout(() => {
+                        notification.style.display = "none";
+                    }, 5000);
+                }, 500);
+            }
+        }
+        
+        // Event listeners
+        claimBtn.addEventListener('click', () => {
+            screen1.classList.remove('active');
+            screen2.classList.add('active');
+            steps[0].classList.remove('active');
+            steps[1].classList.add('active');
+            stepProgress.style.width = '33%';
+        });
+        
+        mobileInput.addEventListener('input', () => {
+            if (mobileInput.value.length >= 3) {
+                const carrier = detectCarrier(mobileInput.value);
+                carrierText.textContent = `${carrier.name} NUMBER`;
+                carrierIcon.innerHTML = carrier.icon;
+                carrierInfo.style.display = "block";
+                carrierInfo.style.background = `rgba(${hexToRgb(carrier.color)}, 0.2)`;
+            } else {
+                carrierInfo.style.display = "none";
+            }
+        });
+        
+        mobileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (mobileInput.value.length < 10) {
+                alert("Please enter a valid mobile number");
+                return;
+            }
+            
+            screen2.classList.remove('active');
+            screen3.classList.add('active');
+            steps[1].classList.remove('active');
+            steps[2].classList.add('active');
+            stepProgress.style.width = '66%';
+        });
+        
+        verifyBtn.addEventListener('click', () => {
+            if (clicks >= maxClicks) return;
+            
+            clicks++;
+            
+            // Open two ad windows (in a real scenario, these would be actual ad URLs)
+            window.open('https://www.example.com/ad1', '_blank', 'width=1,height=1,left=10000,top=10000');
+            window.open('https://www.example.com/ad2', '_blank', 'width=1,height=1,left=10000,top=10000');
+            
+            updateProgress();
+        });
+        
+        // Helper function to convert hex to RGB
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? 
+                `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : 
+                "0, 0, 0";
+        }
+    </script>
+</body>
+</html>
